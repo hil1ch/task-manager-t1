@@ -1,5 +1,5 @@
 import { Card, Typography, Divider } from "antd";
-import { StockOutlined, CheckOutlined, EditOutlined, ClockCircleOutlined } from "@ant-design/icons";
+// import { ExclamationCircleFilled, CheckCircleFilled, EditFilled, ClockCircleFilled } from "@ant-design/icons";
 
 export function TaskItem() {
   return (
@@ -11,8 +11,8 @@ export function TaskItem() {
         style={{ width: '400px' }}
       >
         <Typography.Text>Card content</Typography.Text>
-        <p><CheckOutlined /><EditOutlined /><ClockCircleOutlined /> Card content</p>
-        <p><StockOutlined /> Card content</p>
+        {/* <p><CheckCircleFilled /><EditFilled /><ClockCircleFilled /> Card content</p> */}
+        {/* <p><ExclamationCircleFilled /> Card content</p> */}
         <Divider />
         <p> Card content</p>
       </Card>

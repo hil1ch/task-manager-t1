@@ -25,13 +25,13 @@ export function TaskDetails() {
           >
             <Input />
           </Form.Item>
-          <Form.Item label="Description" layout="vertical">
+          <Form.Item label="Description" layout="vertical" style={{ marginBottom: "45px" }}>
             <Input.TextArea />
           </Form.Item>
           <Form.Item
             label="Category"
             layout="vertical"
-            style={{ marginBottom: "30px" }}
+            
           >
             <Select
               defaultValue="lucy"
@@ -68,7 +68,7 @@ export function TaskDetails() {
               ]}
             />
           </Form.Item>
-          <Flex wrap gap="large" justify="space-between">
+          <Flex wrap gap="large" style={{ marginTop: "20px" }}>
             <Form.Item>
               <Button>Cancel</Button>
             </Form.Item>
