@@ -12,7 +12,6 @@ export function TaskItem({
   status,
 }: ITask) {
   return (
-    <div>
       <Link to={`/task/${id}`} style={{textDecoration: 'none', color: "inherit", fontWeight: '400'}}>
         <Card
           hoverable={true}
@@ -37,6 +36,5 @@ export function TaskItem({
           <p style={{ color: "gray" }}>{category.toUpperCase()}</p>
         </Card>
       </Link>
-    </div>
   );
 }
