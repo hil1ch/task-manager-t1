@@ -1,7 +1,6 @@
 import { Typography } from "antd";
 import { useTask } from "../context/task-context";
 import { TaskItem } from "./TaskItem";
-import { TaskDetails } from "./TaskDetails";
 import type ITask from "../context/task-context";
 
 export function TaskList() {
@@ -33,7 +32,6 @@ export function TaskList() {
           );
         })}
       </div>
-      <TaskDetails />
     </div>
   );
 }
