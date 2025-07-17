@@ -1,4 +1,4 @@
-import { Button, Flex, Select, Form, Input, Typography, Space } from "antd";
+import { Button, Flex, Select, Form, Input, Typography } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
 import { useTask } from "../context/task-context";
@@ -7,10 +7,17 @@ import type ITask from "../context/task-context";
 export function TaskDetails() {
   const [form] = Form.useForm();
   const { id } = useParams<{ id?: string }>();
-  const { tasks } = useTask();
+  const { tasks, updateTask } = useTask();
   const navigate = useNavigate();
 
   const [taskToEdit, setTaskToEdit] = useState<ITask | undefined>(undefined);
+
+  const handleUpdate = (values: ITask) => {
+    if (taskToEdit) {
+      updateTask({ ...taskToEdit, ...values })
+    }
+    navigate('/')
+  }
 
   const categoryOptions = useMemo(() => {
     const uniqueCategories = Array.from(
@@ -69,7 +76,7 @@ export function TaskDetails() {
   return (
     <Form
       form={form}
-      layout="horizontal"
+      layout="vertical"
       style={{
         maxWidth: "100%",
         width: "800px",
@@ -78,31 +85,26 @@ export function TaskDetails() {
         borderRadius: "10px",
       }}
       // initialValues={taskToEdit}
-      // onFinish={() => handleSubmit()}
+      onFinish={handleUpdate}
     >
       <Typography.Title level={3} style={{ margin: "0" }}>
         Edit Task
       </Typography.Title>
-      <Space direction="vertical" size="middle" style={{ display: "flex" }}>
         <Form.Item
           name="heading"
           label="Title"
-          layout="vertical"
-          rules={[{ required: true }]}
+          rules={[{ required: true, message: "Please fill the heading!" }]}
         >
           <Input />
         </Form.Item>
         <Form.Item
           label="Description"
-          layout="vertical"
           name="description"
-          style={{ marginBottom: "45px" }}
         >
           <Input.TextArea />
         </Form.Item>
         <Form.Item
           label="Category"
-          layout="vertical"
           name="category"
           rules={[{ required: true, message: "Please select a category!" }]}
         >
@@ -113,7 +115,6 @@ export function TaskDetails() {
         </Form.Item>
         <Form.Item
           label="Status"
-          layout="vertical"
           name="status"
           rules={[{ required: true, message: "Please select a status!" }]}
         >
@@ -124,7 +125,6 @@ export function TaskDetails() {
         </Form.Item>
         <Form.Item
           label="Priority"
-          layout="vertical"
           name="priority"
           rules={[{ required: true, message: "Please select a priority!" }]}
         >
@@ -136,7 +136,7 @@ export function TaskDetails() {
         <Flex
           wrap
           gap="large"
-          style={{ marginTop: "20px", justifyContent: "space-between" }}
+          style={{ justifyContent: "space-between" }}
         >
           <Form.Item>
             <Button onClick={() => navigate("/")}>Cancel</Button>
@@ -147,7 +147,6 @@ export function TaskDetails() {
             </Button>
           </Form.Item>
         </Flex>
-      </Space>
     </Form>
   );
 }
